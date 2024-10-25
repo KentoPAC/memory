@@ -66,7 +66,7 @@ jobs:
     steps:
       - name: Deploy to server
         run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_KENTO }} kento@localhost "
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 kento@localhost "
             docker pull ${{ secrets.DOCKER_USERNAME }}/memory &&
             docker run -d -p 80:80 ${{ secrets.DOCKER_USERNAME }}/memory
           "

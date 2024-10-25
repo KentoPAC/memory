@@ -16,7 +16,7 @@ jobs:
       - name: Find JPEG files
         id: find-jpgs
         run: |
-          jpg_files=$(find ../../html/data -type f -iname "*.jpg")
+          jpg_files=$(find ../../html/data/ -type f -iname "*.jpg")
           echo "jpg_files=${jpg_files}" >> $GITHUB_ENV
 
       - name: Check JPEG files

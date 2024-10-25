@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Find JPEG files
+            - name: Find JPEG files
         id: find-jpgs
         run: |
           jpg_files=$(find /home/kento/tpDevops/memory/html/data -type f -iname "*.jpg")
@@ -23,11 +23,13 @@ jobs:
 
       - name: Check JPEG files
         run: |
+          set -e  # Arrête le script à la première erreur
           for file in ${{ env.jpg_files }}; do
+            echo "Vérification de $file..."
             if ! file "$file" | grep -q "JPEG image data"; then
               echo "JPEG corrompu: $file"
               cp /home/kento/images/image0.jpg "$file"
-              echo "Remplacement de $file"
+              echo "Remplacement de $file par image0.jpg"
             else
               echo "$file OK."
             fi

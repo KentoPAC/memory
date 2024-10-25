@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-            - name: Find JPEG files
+      - name: Find JPEG files
         id: find-jpgs
         run: |
           jpg_files=$(find /home/kento/tpDevops/memory/html/data -type f -iname "*.jpg")

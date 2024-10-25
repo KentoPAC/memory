@@ -32,3 +32,15 @@ jobs:
               echo "$file OK."
             fi
           done
+
+  build-memory:
+    runs-on: self-hosted
+    needs: test-memory
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/memory .

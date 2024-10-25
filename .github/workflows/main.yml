@@ -67,6 +67,7 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 kento@localhost "
+            cd ../../ &&
             docker-compose pull &&
             docker-compose up -d
           "

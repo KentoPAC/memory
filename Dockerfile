@@ -2,7 +2,7 @@ FROM nginx:latest
 
 COPY conf/nginx.conf .etc/nginx/nginx.conf
 
-COPY . /var/concentration/html/
+COPY ./html /var/concentration/html/
 
 EXPOSE 80
 

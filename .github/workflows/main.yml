@@ -17,11 +17,13 @@ jobs:
         id: find-jpgs
         run: |
           jpg_files=$(find /home/kento/tpDevops/memory/html/data -type f -iname "*.jpg")
-          echo "jpg_files=${jpg_files}" >> $GITHUB_ENV
+          for file in $jpg_files; do
+            echo "jpg_files=${file}" >> $GITHUB_ENV
+          done
 
       - name: Check JPEG files
         run: |
-          for file in $jpg_files; do
+          for file in ${{ env.jpg_files }}; do
             if ! file "$file" | grep -q "JPEG image data"; then
               echo "JPEG corrompu: $file"
               cp /home/kento/images/image0.jpg "$file"
@@ -30,5 +32,3 @@ jobs:
               echo "$file OK."
             fi
           done
-
-
